@@ -1,8 +1,8 @@
-// import { getUserExperience } from "@/utils/common";
 import { getUserExperience } from "@/utils/common";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 import { Tooltip } from "antd";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { firebaseAnonymousLogin } from "../api/apiClient";
 import {
@@ -18,7 +18,6 @@ import ExperienceComponent from "../components/ExperienceComponent";
 import Loader from "../components/Loader";
 import OpenPositionCard from "../components/OpenPositionCard";
 import VideoPlayer from "../components/VideoPlayer";
-import { useRouter } from "next/router";
 
 const SpotLight = () => {
   const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ const SpotLight = () => {
     profileDetails: {},
     openPositions: {},
   });
-  const width = useWindowWidth();
+  // const width = useWindowWidth();
 
   const router = useRouter();
 
@@ -127,7 +126,7 @@ const SpotLight = () => {
                     <div key={index}>
                       <VideoPlayer
                         url={showCaseItem?.url}
-                        height={width > 700 ? "250px" : "180px"}
+                        // height={width > 700 ? "250px" : "180px"}
                       />
                     </div>
                   );
