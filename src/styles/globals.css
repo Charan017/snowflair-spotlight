@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-tooltip .ant-tooltip-inner {
+  background-color: transparent !important;
+  padding: 12px;
+}
+
+:where(.css-dev-only-do-not-override-zg0ahe).ant-tooltip {
+  --antd-arrow-background-color: #1b1825;
+}
