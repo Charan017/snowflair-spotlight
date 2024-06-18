@@ -185,7 +185,7 @@ const SpotLight = () => {
                     <div
                       key={index}
                       className={classNames(
-                        "w-1/2 pb-[12px] sm:w-[150px] sm:h-[150px]",
+                        "w-1/2 pb-[8px] sm:w-[150px] sm:h-[150px]",
                         index % 2 === 0
                           ? "pr-[8px] sm:pr-0"
                           : "pl-[8px] sm:pl-0"
