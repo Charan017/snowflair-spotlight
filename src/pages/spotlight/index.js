@@ -29,6 +29,7 @@ const SpotLight = () => {
 
   const fetchData = async () => {
     setLoading(true);
+    console.log({ id });
     const data = await getApi({ userId: id });
 
     setData({

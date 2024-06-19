@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getApi = async ({ userId }) => {
+  console.log({ userId });
   try {
     const response = await axios.get(
       `${process.env.BASE_URL}/v1/users?userId=${userId}`
