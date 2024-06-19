@@ -13,7 +13,7 @@ const getUserId = () => {
 
 export const getShowCaseThunk = async ({ id }) => {
   const userId = getUserId();
-  const path = getShowCasesPath(userId);
+  const path = getShowCasesPath(id);
   const childKey = DBConstants.IS_DELETED;
   const response = await getAPIByChild(path, childKey, false);
   return response;
@@ -21,7 +21,7 @@ export const getShowCaseThunk = async ({ id }) => {
 
 export const getUserExperiencesThunk = async ({ id }) => {
   const userId = getUserId();
-  const path = getUserExperiencesPath(userId);
+  const path = getUserExperiencesPath(id);
   const childKey = DBConstants.IS_DELETED;
   const response = await getAPIByChild(path, childKey, false);
   return response;
@@ -29,7 +29,7 @@ export const getUserExperiencesThunk = async ({ id }) => {
 
 export const getProfileDetailsThunk = async ({ id }) => {
   const userId = getUserId();
-  const path = getProfileDetailsPath(userId);
+  const path = getProfileDetailsPath(id);
   const response = await getAPI(path);
   return response;
 };
@@ -38,7 +38,7 @@ export const getOpenPositionsThunk = async ({ id }) => {
   const userId = getUserId();
   const path = getOpenPositionsPath();
   const childKey = DBConstants.CREATED_BY;
-  const response = await getAPIByChild(path, childKey, userId);
+  const response = await getAPIByChild(path, childKey, id);
 
   return response;
 };
