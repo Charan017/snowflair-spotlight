@@ -4,13 +4,7 @@ import { Tooltip } from "antd";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { firebaseAnonymousLogin, getApi } from "../api/apiClient";
-import {
-  getOpenPositionsThunk,
-  getProfileDetailsThunk,
-  getShowCaseThunk,
-  getUserExperiencesThunk,
-} from "../api/SpotlightAPIs";
+import { getApi } from "../api/apiClient";
 import CustomImage from "../components/CustomImage";
 import DefaultProfileIcon from "../components/DefaultProfileIcon";
 import DividerComponent from "../components/DividerComponent";
@@ -33,18 +27,9 @@ const SpotLight = () => {
 
   const { id } = router.query;
 
-  console.log({ id });
-
   const fetchData = async () => {
     setLoading(true);
-    // try {
     const data = await getApi({ userId: id });
-    // const showCase = await getShowCaseThunk({ id });
-    // const userExperience = await getUserExperiencesThunk({ id });
-    // const profileDetails = await getProfileDetailsThunk({ id });
-    // const openPositions = await getOpenPositionsThunk({ id });
-
-    console.log({ data });
 
     setData({
       showCase: data?.showcase_images || {},
@@ -53,33 +38,12 @@ const SpotLight = () => {
       openPositions: data?.job_listings || {},
     });
 
-    // setData({ showCase, userExperience, profileDetails, openPositions });
-    // } catch (error) {
-    //   console.error("Error fetching data:", error);
-    // }
-    setLoading(false);
-  };
-
-  const fetchAnonymousLoginAndData = async () => {
-    setLoading(true);
-    try {
-      const loginResponse = await firebaseAnonymousLogin();
-
-      if (loginResponse?.user?.accessToken) {
-        await fetchData();
-      }
-    } catch (error) {
-      console.log({ error });
-    }
     setLoading(false);
   };
 
   useEffect(() => {
-    // fetchAnonymousLoginAndData();
     fetchData();
   }, []);
-
-  console.log(data);
 
   return (
     <div>
@@ -107,7 +71,10 @@ const SpotLight = () => {
             </div>
           </div>
 
-          <div className="px-[20px] bg-black pt-[67px]">
+          <div
+            className="px-[20px] bg-black pt-[67px]"
+            style={{ minHeight: "calc(100vh - 200px)" }}
+          >
             <div className="text-primaryText font-semibold text-xl leading-24 mb-[4px]">
               {`${data?.profileDetails?.first_name} ${data?.profileDetails?.last_name}`}
             </div>

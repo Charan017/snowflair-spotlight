@@ -9,7 +9,6 @@ export const getYearFromDate = (dateString) => {
 };
 
 export const getUserExperience = (userExperience) => {
-  console.log({ userExperience });
   if (!!userExperience) {
     let totalMillis = 0;
     let totalMonths = 0;

@@ -12,6 +12,9 @@ const nextConfig = {
     "rc-tree",
     "rc-table",
   ],
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
 };
 
 export default nextConfig;
