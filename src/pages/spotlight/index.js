@@ -27,24 +27,29 @@ const SpotLight = () => {
 
   const { id } = router.query;
 
+  console.log({ router, id });
+
   const fetchData = async () => {
     setLoading(true);
-    console.log({ id });
-    const data = await getApi({ userId: id });
+    if (id) {
+      console.log({ id });
+      const data = await getApi({ userId: id });
 
-    setData({
-      showCase: data?.showcase_images || {},
-      userExperience: data?.user_experiences || {},
-      profileDetails: data?.users || {},
-      openPositions: data?.job_listings || {},
-    });
-
+      setData({
+        showCase: data?.showcase_images || {},
+        userExperience: data?.user_experiences || {},
+        profileDetails: data?.users || {},
+        openPositions: data?.job_listings || {},
+      });
+    }
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (router.isReady && id) {
+      fetchData();
+    }
+  }, [router.isReady, id]);
 
   return (
     <div>
