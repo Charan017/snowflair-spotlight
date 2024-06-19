@@ -4,7 +4,7 @@ import { Tooltip } from "antd";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { firebaseAnonymousLogin } from "../api/apiClient";
+import { firebaseAnonymousLogin, getApi } from "../api/apiClient";
 import {
   getOpenPositionsThunk,
   getProfileDetailsThunk,
@@ -37,16 +37,26 @@ const SpotLight = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    try {
-      const showCase = await getShowCaseThunk({ id });
-      const userExperience = await getUserExperiencesThunk({ id });
-      const profileDetails = await getProfileDetailsThunk({ id });
-      const openPositions = await getOpenPositionsThunk({ id });
+    // try {
+    const data = await getApi({ userId: id });
+    // const showCase = await getShowCaseThunk({ id });
+    // const userExperience = await getUserExperiencesThunk({ id });
+    // const profileDetails = await getProfileDetailsThunk({ id });
+    // const openPositions = await getOpenPositionsThunk({ id });
 
-      setData({ showCase, userExperience, profileDetails, openPositions });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    console.log({ data });
+
+    setData({
+      showCase: data?.showcase_images || {},
+      userExperience: data?.user_experiences || {},
+      profileDetails: data?.users || {},
+      openPositions: data?.job_listings || {},
+    });
+
+    // setData({ showCase, userExperience, profileDetails, openPositions });
+    // } catch (error) {
+    //   console.error("Error fetching data:", error);
+    // }
     setLoading(false);
   };
 
@@ -65,8 +75,8 @@ const SpotLight = () => {
   };
 
   useEffect(() => {
-    fetchAnonymousLoginAndData();
-    // fetchData();
+    // fetchAnonymousLoginAndData();
+    fetchData();
   }, []);
 
   console.log(data);
@@ -156,13 +166,10 @@ const SpotLight = () => {
               <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
                 Open Positions
               </div>
-              <div className="sm:grid sm:grid-cols-4 flex flex-col gap-4">
-                <OpenPositionCard />
-                <OpenPositionCard />
-                <OpenPositionCard />
-                <OpenPositionCard />
-                <OpenPositionCard />
-                <OpenPositionCard />
+              <div className="sm:grid md:grid lg:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex flex-col gap-4">
+                {Object.keys(data?.openPositions)?.map((position) => (
+                  <OpenPositionCard item={data?.openPositions?.[position]} />
+                ))}
               </div>
             </div>
 

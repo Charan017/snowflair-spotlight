@@ -12,6 +12,7 @@
     "@ant-design/icons": "^5.3.7",
     "@react-firebase/auth": "^0.2.10",
     "antd": "^5.18.1",
+    "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.2",

@@ -53,3 +53,17 @@ export const getAPIByChild = async (path, childKey, childValue) => {
     throw error;
   }
 };
+
+export const getApi = async ({ userId }) => {
+  try {
+    const response = await axios.get(
+      `${process.env.BASE_URL}/v1/users?userId=${userId}`
+    );
+
+    console.log(response);
+
+    return response?.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
