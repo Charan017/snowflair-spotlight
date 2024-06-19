@@ -12,6 +12,7 @@ import ExperienceComponent from "../components/ExperienceComponent";
 import Loader from "../components/Loader";
 import OpenPositionCard from "../components/OpenPositionCard";
 import VideoPlayer from "../components/VideoPlayer";
+import _ from "lodash";
 
 const SpotLight = () => {
   const [loading, setLoading] = useState(false);
@@ -27,12 +28,9 @@ const SpotLight = () => {
 
   const { id } = router.query;
 
-  console.log({ router, id });
-
   const fetchData = async () => {
     setLoading(true);
     if (id) {
-      console.log({ id });
       const data = await getApi({ userId: id });
 
       setData({
@@ -123,11 +121,12 @@ const SpotLight = () => {
 
             <DividerComponent />
 
-            <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
-              Experience
-            </div>
-
-            <div className="">
+            <div>
+              {_.isEmpty(data?.userExperience) && (
+                <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
+                  Experience
+                </div>
+              )}
               {Object.keys(data?.userExperience)?.map((item, index) => (
                 <div key={index}>
                   <ExperienceComponent item={data?.userExperience?.[item]} />
@@ -136,9 +135,11 @@ const SpotLight = () => {
             </div>
 
             <div>
-              <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
-                Open Positions
-              </div>
+              {_.isEmpty(data?.openPositions) && (
+                <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
+                  Open Positions
+                </div>
+              )}
               <div className="sm:grid md:grid lg:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex flex-col gap-4">
                 {Object.keys(data?.openPositions)?.map((position) => (
                   <OpenPositionCard item={data?.openPositions?.[position]} />
@@ -148,22 +149,24 @@ const SpotLight = () => {
 
             <DividerComponent />
 
-            <div className="flex items-center mb-[16px]">
-              <div className="text-primaryText font-semibold text-xl mr-[8px]">
-                My Showcase
+            {_.isEmpty(data?.showCase) && (
+              <div className="flex items-center mb-[16px]">
+                <div className="text-primaryText font-semibold text-xl mr-[8px]">
+                  My Showcase
+                </div>
+                <Tooltip
+                  overlayClassName="bg-tooltipBackgroundColor rounded-[6px] font-medium text-md text-primaryText"
+                  title="Showcase your team members and culture for job seekers to know you better!"
+                >
+                  <CustomImage
+                    src={"infoIcon.svg"}
+                    width={16}
+                    height={16}
+                    className="mt-[2.3px]"
+                  />
+                </Tooltip>
               </div>
-              <Tooltip
-                overlayClassName="bg-tooltipBackgroundColor rounded-[6px] font-medium text-md text-primaryText"
-                title="Showcase your team members and culture for job seekers to know you better!"
-              >
-                <CustomImage
-                  src={"infoIcon.svg"}
-                  width={16}
-                  height={16}
-                  className="mt-[2.3px]"
-                />
-              </Tooltip>
-            </div>
+            )}
 
             <div className="flex flex-wrap justify-start pb-[32px] sm:gap-4">
               {Object.keys(data?.showCase)
