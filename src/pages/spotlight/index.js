@@ -98,15 +98,20 @@ const SpotLight = () => {
           </div>
 
           <div className="px-[20px] bg-black pt-[67px]">
-            <div className="text-primaryText font-semibold text-xl leading-24">
+            <div className="text-primaryText font-semibold text-xl leading-24 mb-[4px]">
               {`${data?.profileDetails?.first_name} ${data?.profileDetails?.last_name}`}
             </div>
 
-            <div className="flex items-center mt-[4px]">
+            <div className="flex items-center">
               <div className="text-secondaryText font-medium text-lg mr-[6px]">
                 {data?.profileDetails?.title}
               </div>
-              <CustomImage src={"link.svg"} width={20} height={20} />
+              <CustomImage
+                src={"link.svg"}
+                width={20}
+                height={20}
+                className="mt-[2.3px]"
+              />
               <div className="text-secondaryText font-medium text-lg ml-[6px]">
                 {data?.profileDetails?.company}
               </div>
@@ -171,7 +176,12 @@ const SpotLight = () => {
                 overlayClassName="bg-tooltipBackgroundColor rounded-[6px] font-medium text-md text-primaryText"
                 title="Showcase your team members and culture for job seekers to know you better!"
               >
-                <CustomImage src={"infoIcon.svg"} width={16} height={16} />
+                <CustomImage
+                  src={"infoIcon.svg"}
+                  width={16}
+                  height={16}
+                  className="mt-[2.3px]"
+                />
               </Tooltip>
             </div>
 

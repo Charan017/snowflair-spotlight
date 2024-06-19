@@ -10,3 +10,7 @@
 :where(.css-dev-only-do-not-override-zg0ahe).ant-tooltip {
   --antd-arrow-background-color: #1b1825;
 }
+
+.ant-image-preview-operations {
+  background-color: black;
+}
