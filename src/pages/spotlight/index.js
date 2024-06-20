@@ -122,7 +122,7 @@ const SpotLight = () => {
             <DividerComponent />
 
             <div>
-              {_.isEmpty(data?.userExperience) && (
+              {!_.isEmpty(data?.userExperience) && (
                 <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
                   Experience
                 </div>
@@ -135,7 +135,7 @@ const SpotLight = () => {
             </div>
 
             <div>
-              {_.isEmpty(data?.openPositions) && (
+              {!_.isEmpty(data?.openPositions) && (
                 <div className="text-primaryText font-semibold text-xl leading-24 mb-[16px]">
                   Open Positions
                 </div>
@@ -149,7 +149,7 @@ const SpotLight = () => {
 
             <DividerComponent />
 
-            {_.isEmpty(data?.showCase) && (
+            {!_.isEmpty(data?.showCase) && (
               <div className="flex items-center mb-[16px]">
                 <div className="text-primaryText font-semibold text-xl mr-[8px]">
                   My Showcase
