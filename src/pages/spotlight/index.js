@@ -147,7 +147,7 @@ const SpotLight = () => {
               </div>
             </div>
 
-            <DividerComponent />
+            {!_.isEmpty(data?.openPositions) && <DividerComponent />}
 
             {!_.isEmpty(data?.showCase) && (
               <div className="flex items-center mb-[16px]">
