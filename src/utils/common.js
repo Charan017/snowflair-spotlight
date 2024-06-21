@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import _ from "lodash";
 
 export const getYearFromDate = (dateString) => {
   const date = dayjs(dateString);
@@ -9,7 +10,7 @@ export const getYearFromDate = (dateString) => {
 };
 
 export const getUserExperience = (userExperience) => {
-  if (!!userExperience) {
+  if (!_.isEmpty(userExperience)) {
     let totalMillis = 0;
     let totalMonths = 0;
     const millisecondsInMonth = 30.44 * 24 * 60 * 60 * 1000;
