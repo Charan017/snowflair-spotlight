@@ -68,9 +68,11 @@ const SpotLight = () => {
                 ) : (
                   <DefaultProfileIcon />
                 )}
-                <div className="w-[20px] h-[20px] rounded-[10px] bg-lightPurple flex items-center justify-center absolute bottom-0 right-[10px]">
-                  {getUserExperience(data?.userExperience)}
-                </div>
+                {!_.isEmpty(data?.userExperience) && (
+                  <div className="w-[20px] h-[20px] rounded-[10px] bg-lightPurple flex items-center justify-center absolute bottom-0 right-[10px]">
+                    {getUserExperience(data?.userExperience)}
+                  </div>
+                )}
               </div>
             </div>
           </div>
