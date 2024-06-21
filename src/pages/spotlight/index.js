@@ -1,7 +1,8 @@
-import { getUserExperience } from "@/utils/common";
+import { getUserExperience, sortJobsByCreatedAt } from "@/utils/common";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 import { Tooltip } from "antd";
 import classNames from "classnames";
+import _ from "lodash";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getApi } from "../api/apiClient";
@@ -12,7 +13,6 @@ import ExperienceComponent from "../components/ExperienceComponent";
 import Loader from "../components/Loader";
 import OpenPositionCard from "../components/OpenPositionCard";
 import VideoPlayer from "../components/VideoPlayer";
-import _ from "lodash";
 
 const SpotLight = () => {
   const [loading, setLoading] = useState(false);
@@ -141,7 +141,7 @@ const SpotLight = () => {
                 </div>
               )}
               <div className="sm:grid md:grid lg:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex flex-col gap-4">
-                {Object.keys(data?.openPositions)
+                {Object.keys(sortJobsByCreatedAt(data?.openPositions))
                   ?.reverse()
                   ?.map((position) => (
                     <OpenPositionCard item={data?.openPositions?.[position]} />

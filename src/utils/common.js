@@ -48,3 +48,13 @@ export const getUserExperience = (userExperience) => {
     return totalYears;
   } else return 0;
 };
+
+export const sortJobsByCreatedAt = (jobs) => {
+  const entriesArray = Object.entries(jobs);
+
+  entriesArray.sort(([, a], [, b]) => a.created_at - b.created_at);
+
+  const sortedJobs = Object.fromEntries(entriesArray);
+
+  return sortedJobs;
+};
