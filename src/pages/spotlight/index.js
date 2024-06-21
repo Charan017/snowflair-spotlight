@@ -190,8 +190,8 @@ const SpotLight = () => {
                         url={showCaseItem?.url}
                         preview={true}
                         className="w-full h-auto rounded-[8px]"
-                        height={width > 700 ? "150px" : "180px"}
-                        width={width > 700 ? "150px" : "180px"}
+                        height={width > 700 ? "150px" : `${(width - 56) / 2}px`}
+                        width={width > 700 ? "150px" : `${(width - 56) / 2}px`}
                       />
                     </div>
                   );
