@@ -12,7 +12,7 @@ const CustomImage = ({ src, width, height, url, preview = false, ...rest }) => {
       style={{
         overflow: "hidden",
         aspectRatio: "auto",
-        objectFit: "contain",
+        objectFit: "cover",
       }}
       {...rest}
     />
