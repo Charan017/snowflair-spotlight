@@ -9,6 +9,11 @@ const CustomImage = ({ src, width, height, url, preview = false, ...rest }) => {
       width={width}
       height={height}
       className={classNames("w-full h-auto", rest.className)}
+      style={{
+        overflow: "hidden",
+        aspectRatio: "auto",
+        objectFit: "contain",
+      }}
       {...rest}
     />
   ) : (

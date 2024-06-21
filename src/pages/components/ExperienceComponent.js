@@ -30,7 +30,7 @@ const ExperienceComponent = ({ item }) => {
           </div>
         </div>
       </div>
-      <TruncatedText text={item?.description} lines={5} />
+      {item?.description && <TruncatedText text={item?.description} />}
       <DividerComponent />
     </div>
   );

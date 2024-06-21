@@ -141,9 +141,11 @@ const SpotLight = () => {
                 </div>
               )}
               <div className="sm:grid md:grid lg:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex flex-col gap-4">
-                {Object.keys(data?.openPositions)?.map((position) => (
-                  <OpenPositionCard item={data?.openPositions?.[position]} />
-                ))}
+                {Object.keys(data?.openPositions)
+                  ?.reverse()
+                  ?.map((position) => (
+                    <OpenPositionCard item={data?.openPositions?.[position]} />
+                  ))}
               </div>
             </div>
 
@@ -188,6 +190,8 @@ const SpotLight = () => {
                         url={showCaseItem?.url}
                         preview={true}
                         className="w-full h-auto rounded-[8px]"
+                        height={width > 700 ? "150px" : "180px"}
+                        width={width > 700 ? "150px" : "180px"}
                       />
                     </div>
                   );
