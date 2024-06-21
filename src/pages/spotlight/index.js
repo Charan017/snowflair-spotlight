@@ -1,4 +1,8 @@
-import { getUserExperience, sortJobsByCreatedAt } from "@/utils/common";
+import {
+  getUserExperience,
+  sortJobsByCreatedAt,
+  sortJobsByStartDate,
+} from "@/utils/common";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
 import { Tooltip } from "antd";
 import classNames from "classnames";
@@ -129,11 +133,13 @@ const SpotLight = () => {
                   Experience
                 </div>
               )}
-              {Object.keys(data?.userExperience)?.map((item, index) => (
-                <div key={index}>
-                  <ExperienceComponent item={data?.userExperience?.[item]} />
-                </div>
-              ))}
+              {Object.keys(sortJobsByStartDate(data?.userExperience))?.map(
+                (item, index) => (
+                  <div key={index}>
+                    <ExperienceComponent item={data?.userExperience?.[item]} />
+                  </div>
+                )
+              )}
             </div>
 
             <div>

@@ -51,11 +51,30 @@ export const getUserExperience = (userExperience) => {
 };
 
 export const sortJobsByCreatedAt = (jobs) => {
-  const entriesArray = Object.entries(jobs);
+  if (!_.isEmpty(jobs)) {
+    const entriesArray = Object.entries(jobs);
 
-  entriesArray.sort(([, a], [, b]) => a.created_at - b.created_at);
+    entriesArray.sort(([, a], [, b]) => a.created_at - b.created_at);
 
-  const sortedJobs = Object.fromEntries(entriesArray);
+    const sortedJobs = Object.fromEntries(entriesArray);
 
-  return sortedJobs;
+    return sortedJobs;
+  }
+  return {};
+};
+
+export const sortJobsByStartDate = (data) => {
+  if (!_.isEmpty(data)) {
+    const dataArray = Object.values(data);
+
+    dataArray.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+
+    const sortedData = dataArray.reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
+
+    return sortedData;
+  }
+  return {};
 };
