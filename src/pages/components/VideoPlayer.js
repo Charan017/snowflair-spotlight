@@ -9,19 +9,16 @@ const VideoPlayer = ({ url, width = "100%", height = "220px" }) => {
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
 
-
-  let timeout;
+  const handleShowControls = (e) => {
+    setShowControls(!showControls);
+  };
 
   const handleMouseEnter = () => {
-    clearTimeout(timeout); // Clear any existing timeout
     setShowControls(true);
   };
 
   const handleMouseLeave = () => {
-    clearTimeout(timeout); // Clear any existing timeout
-    timeout = setTimeout(() => {
-      setShowControls(false);
-    }, 3000);
+    setShowControls(false);
   };
 
   const handleEnded = () => {
@@ -29,27 +26,6 @@ const VideoPlayer = ({ url, width = "100%", height = "220px" }) => {
       playerRef.current.seekTo(0);
     }
   };
-
-  const handleMuteToggle = () => {
-    setIsMuted((prevState) => !prevState); // Toggle mute state
-    // Show controls and reset timeout
-    setShowControls(true);
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      setShowControls(false);
-    }, 3000);
-  };
-
-  useEffect(() => {
-    let timeout;
-    if (showControls) {
-      timeout = setTimeout(() => {
-        setShowControls(false);
-      }, 3000);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [showControls]);
 
   // const toggleFullscreen = () => {
   //   if (!document.fullscreenElement) {
@@ -98,8 +74,7 @@ const VideoPlayer = ({ url, width = "100%", height = "220px" }) => {
             <div
               className="flex items-center justify-center"
               onClick={(e) => {
-                e.preventDefault();
-                handleMuteToggle();
+                setIsMuted(false);
               }}
             >
               <CustomImage src={"/mute.svg"} width={20} height={20} />
@@ -109,8 +84,7 @@ const VideoPlayer = ({ url, width = "100%", height = "220px" }) => {
               style={{ color: "white" }}
               className="flex items-center justify-center"
               onClick={(e) => {
-                e.preventDefault();
-                handleMuteToggle();
+                setIsMuted(true);
               }}
             >
               <CustomImage src={"/unMute.svg"} width={20} height={20} />
