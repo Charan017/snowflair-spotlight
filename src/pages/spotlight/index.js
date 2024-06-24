@@ -4,7 +4,7 @@ import {
   sortJobsByStartDate,
 } from "@/utils/common";
 import useWindowWidth from "@/utils/hooks/useWindowWidth";
-import { Tooltip } from "antd";
+import { Image, Tooltip } from "antd";
 import classNames from "classnames";
 import _ from "lodash";
 import { useRouter } from "next/router";
@@ -62,13 +62,15 @@ const SpotLight = () => {
             <div className="absolute bottom-[-70px] left-[16px] flex justify-end flex-row-reverse mb-[20px]">
               <div className="relative">
                 {data?.profileDetails?.profile_picture_url ? (
-                  <CustomImage
-                    url={data?.profileDetails?.profile_picture_url}
-                    preview={true}
-                    className="rounded-full"
-                    width={88}
-                    height={88}
-                  />
+                  <div className="border-[2px] border-solid border-profileIconBorderColor rounded-full">
+                    <CustomImage
+                      url={data?.profileDetails?.profile_picture_url}
+                      preview={true}
+                      className="rounded-full"
+                      width={88}
+                      height={88}
+                    />
+                  </div>
                 ) : (
                   <DefaultProfileIcon />
                 )}
@@ -178,33 +180,44 @@ const SpotLight = () => {
               </div>
             )}
 
-            <div className="flex flex-wrap justify-start pb-[32px] sm:gap-4">
-              {Object.keys(data?.showCase)
-                ?.filter((it) => data?.showCase?.[it]?.media_type === "photo")
-                ?.map((item, index) => {
-                  const showCaseItem = data?.showCase?.[item];
+            <Image.PreviewGroup
+              preview={{
+                onChange: (current, prev) =>
+                  console.log(`current index: ${current}, prev index: ${prev}`),
+              }}
+            >
+              <div className="flex flex-wrap justify-start pb-[32px] sm:gap-4">
+                {Object.keys(data?.showCase)
+                  ?.filter((it) => data?.showCase?.[it]?.media_type === "photo")
+                  ?.map((item, index) => {
+                    const showCaseItem = data?.showCase?.[item];
 
-                  return (
-                    <div
-                      key={index}
-                      className={classNames(
-                        "w-1/2 pb-[8px] sm:w-[150px] sm:h-[150px]",
-                        index % 2 === 0
-                          ? "pr-[8px] sm:pr-0"
-                          : "pl-[8px] sm:pl-0"
-                      )}
-                    >
-                      <CustomImage
-                        url={showCaseItem?.url}
-                        preview={true}
-                        className="w-full h-auto rounded-[8px]"
-                        height={width > 700 ? "150px" : `${(width - 56) / 2}px`}
-                        width={width > 700 ? "150px" : `${(width - 56) / 2}px`}
-                      />
-                    </div>
-                  );
-                })}
-            </div>
+                    return (
+                      <div
+                        key={index}
+                        className={classNames(
+                          "w-1/2 pb-[8px] sm:w-[150px] sm:h-[150px]",
+                          index % 2 === 0
+                            ? "pr-[8px] sm:pr-0"
+                            : "pl-[8px] sm:pl-0"
+                        )}
+                      >
+                        <CustomImage
+                          url={showCaseItem?.url}
+                          preview={true}
+                          className="w-full h-auto rounded-[8px]"
+                          height={
+                            width > 700 ? "150px" : `${(width - 56) / 2}px`
+                          }
+                          width={
+                            width > 700 ? "150px" : `${(width - 56) / 2}px`
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
+            </Image.PreviewGroup>
           </div>
         </div>
       )}
