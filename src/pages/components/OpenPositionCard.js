@@ -16,7 +16,7 @@ const OpenPositionCard = ({ item }) => {
         url = "https://example.com";
       }
 
-      const button = document.getElementById("redirect-button");
+      const button = document.querySelectorAll(".redirect-button");
       button.onclick = () => {
         window.location.href = url;
       };
@@ -26,7 +26,7 @@ const OpenPositionCard = ({ item }) => {
   return (
     <div
       className="bg-OpenPositionCardColor rounded-[12px] p-[16px] gap-[12px] cursor-pointer"
-      id="redirect-button"
+      class="redirect-button"
     >
       <div className="font-medium text-lg mb-[8px] text-primaryText">
         {item?.title}
