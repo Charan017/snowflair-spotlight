@@ -8,9 +8,10 @@ const OpenPositionCard = ({ item }) => {
       let url;
 
       if (/android/i.test(userAgent)) {
-        url = "https://play.google.com/store/apps/details?id=com.example";
+        url =
+          "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en";
       } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        url = "https://apps.apple.com/us/app/example/id123456789";
+        url = "https://www.apple.com/in/shop/accessories/all";
       } else {
         url = "https://example.com";
       }
