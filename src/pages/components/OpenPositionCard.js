@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
 import Badge from "./Badge";
 
 const OpenPositionCard = ({ item }) => {
-  useEffect(() => {
+  const handleClick = () => {
     if (typeof window !== "undefined") {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       let url;
@@ -16,17 +15,14 @@ const OpenPositionCard = ({ item }) => {
         url = "https://example.com";
       }
 
-      const button = document.querySelectorAll(".redirect-button");
-      button.onclick = () => {
-        window.location.href = url;
-      };
+      window.location.href = url;
     }
-  }, []);
+  };
 
   return (
     <div
       className="bg-OpenPositionCardColor rounded-[12px] p-[16px] gap-[12px] cursor-pointer"
-      class="redirect-button"
+      onClick={handleClick}
     >
       <div className="font-medium text-lg mb-[8px] text-primaryText">
         {item?.title}
