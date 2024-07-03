@@ -1,3 +1,9 @@
+import {
+  APP_STORE_URL,
+  PLAY_STORE_URL,
+  timeUnits,
+  workSchedules,
+} from "@/utils/constants";
 import Badge from "./Badge";
 
 const OpenPositionCard = ({ item }) => {
@@ -7,15 +13,15 @@ const OpenPositionCard = ({ item }) => {
       let url;
 
       if (/android/i.test(userAgent)) {
-        url =
-          "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en";
+        url = PLAY_STORE_URL;
       } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        url = "https://www.apple.com/in/shop/accessories/all";
-      } else {
-        url = "https://example.com";
+        url = APP_STORE_URL;
       }
 
-      window.location.href = url;
+      // Open the URL in a new tab
+      if (url) {
+        window.open(url, "_blank");
+      }
     }
   };
 
@@ -31,9 +37,11 @@ const OpenPositionCard = ({ item }) => {
         {item?.location_text}
       </div>
       <div className="flex gap-[8px]">
-        <Badge title={item?.employment_type} />
+        <Badge title={workSchedules?.[item?.employment_type]} />
         <Badge
-          title={`${item?.currency_symbol}${item?.base_salary}/${item?.pay_frequency}`}
+          title={`${item?.currency_symbol}${item?.base_salary}/${
+            timeUnits?.[item?.pay_frequency]
+          }`}
         />
       </div>
     </div>

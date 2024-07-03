@@ -58,7 +58,7 @@ const SpotLight = () => {
       {loading && <Loader />}
       {!loading && (
         <div>
-          <div className="relative bg-gradient-to-r from-gradientStart to-gradientEnd h-[200px] w-full">
+          <div className="relative bg-gradient-to-r from-gradientStart to-gradientEnd sm:h-[200px] h-[150px] w-full">
             <div className="flex justify-end pr-[20px] pt-[16px]">
               <CustomImage src={"/flairCardIcon.svg"} width={89} height={24} />
             </div>
