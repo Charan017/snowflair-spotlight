@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import _ from "lodash";
+import { APP_STORE_URL, PLAY_STORE_URL } from "./constants";
 
 export const getYearFromDate = (dateString) => {
   const date = dayjs(dateString);
@@ -77,4 +78,22 @@ export const sortJobsByStartDate = (data) => {
     return sortedData;
   }
   return {};
+};
+
+export const playStoreAndAppStoreNavigation = () => {
+  if (typeof window !== "undefined") {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    let url;
+
+    if (/android/i.test(userAgent)) {
+      url = PLAY_STORE_URL;
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      url = APP_STORE_URL;
+    }
+
+    // Open the URL in a new tab
+    if (url) {
+      window.open(url, "_blank");
+    }
+  }
 };
