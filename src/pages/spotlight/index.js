@@ -61,10 +61,11 @@ const SpotLight = () => {
         <div>
           <div className="relative bg-gradient-to-r from-gradientStart to-gradientEnd sm:h-[200px] h-[150px] w-full">
             <div
-              className="flex justify-end pr-[20px] pt-[16px]"
+              className="flex justify-end items-center pr-[20px] pt-[16px]"
               onClick={playStoreAndAppStoreNavigation}
             >
-              <CustomImage src={"/flairCardIcon.svg"} width={89} height={24} />
+              <CustomImage src={"/flairCardIcon.svg"} width={24} height={24} />
+              <div className="text-white ml-[4px]">Flaircard</div>
             </div>
             <div className="absolute bottom-[-70px] left-[16px] flex justify-end flex-row-reverse mb-[20px]">
               <div className="relative">

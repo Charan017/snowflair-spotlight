@@ -20,13 +20,11 @@ const ExperienceComponent = ({ item }) => {
         </div>
         <div className="flex items-center self-end">
           <div className="text-textThree font-medium text-md leading-16">
-            {getYearFromDate(item?.start_date)}
-          </div>
-          <div className="w-[5px] h-[5px] rounded-full bg-textThree mx-[6px]" />
-          <div className="text-textThree font-medium text-md leading-16">
-            {item?.is_currently_working
-              ? "Present"
-              : getYearFromDate(item?.end_date)}
+            {`${getYearFromDate(item?.start_date)} - ${
+              item?.is_currently_working
+                ? "Present"
+                : getYearFromDate(item?.end_date)
+            }`}
           </div>
         </div>
       </div>
